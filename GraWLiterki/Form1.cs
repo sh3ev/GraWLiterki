@@ -23,6 +23,7 @@ namespace GraWLiterki
         {
             //Dodaje losową literę do kontrolki  ListBox
             listBox1.Items.Add((Keys) random.Next(65, 90));
+            listBox1.ForeColor = ColorGenerator();
             if (listBox1.Items.Count > 7)
             {
                 listBox1.Items.Clear();
@@ -88,6 +89,15 @@ namespace GraWLiterki
             difficultyProgressBar.Value = 0;
             timer1.Interval = 800;
             timer1.Start();
+        }
+
+        private Color ColorGenerator()
+        {
+            Random randomGen = new Random();
+            KnownColor[] names = (KnownColor[])Enum.GetValues(typeof(KnownColor));
+            KnownColor randomColorName = names[randomGen.Next(names.Length)];
+            Color randomColor = Color.FromKnownColor(randomColorName);
+            return randomColor;
         }
     }
 }
